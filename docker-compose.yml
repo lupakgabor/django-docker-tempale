@@ -1,0 +1,16 @@
+version: "2.1"
+services:
+    admin:
+        container_name: container-dev-name
+        build:
+            context: .
+            dockerfile: ./docker/Dockerfile
+        restart: always
+        ports:
+            - 8000:8000
+        volumes:
+          - ./src/:/src
+        env_file:
+            - ./docker/dev.env
+        tty: true
+        command: python manage.py runserver 0.0.0.0:8000
